@@ -39,6 +39,15 @@ async function run() {
       res.send(result);
     });
 
+    app.get('/product/:brand', async (req, res) => {
+        const brand = req.params.brand;
+        const query = { brand: brand };
+        const products = await productCollection.find(query).toArray();
+        res.send(products);
+    });
+    
+    
+
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log(
