@@ -44,14 +44,14 @@ async function run() {
 
     app.post("/product", async (req, res) => {
       const newProduct = req.body;
-      console.log(newProduct);
+      // console.log(newProduct);
       const result = await productCollection.insertOne(newProduct);
       res.send(result);
     });
 
     app.post("/cartItem", async (req, res) => {
       const newItem = req.body;
-      console.log(newItem);
+      // console.log(newItem);
       const result = await cartCollection.insertOne(newItem);
       res.send(result);
     });
@@ -63,7 +63,7 @@ async function run() {
       res.send(products);
     });
 
-    app.put("/product/:id", async (req, res) => {
+    app.put("/product/update/:id", async (req, res) => {
       const id = req.params.id;
       const filter = { _id: new ObjectId(id) };
       const options = { upsert: true };
@@ -85,6 +85,7 @@ async function run() {
         options
       );
       res.send(result);
+      console.log(result);
     });
 
     // cart data
